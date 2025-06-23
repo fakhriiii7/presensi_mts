@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Presensi MTs</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Presensi MTs</h2>
+        <ul>
+            {% if user.is_authenticated and user.groups.first.name == 'Guru' %}
+                <li><a href="{% url 'input_presensi' %}">Input Presensi</a></li>
+                <li><a href="{% url 'rekap_presensi' %}">Rekap</a></li>
+            {% elif user.is_authenticated and user.groups.first.name == 'Siswa' %}
+                <li><a href="{% url 'riwayat_siswa' %}">Riwayat Presensi</a></li>
+            {% endif %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

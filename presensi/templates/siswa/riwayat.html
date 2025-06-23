@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Riwayat Presensi</h2>
+<table>
+    <tr>
+        <th>Mata Pelajaran</th><th>Status</th><th>Tanggal</th>
+    </tr>
+    {% for p in presensi %}
+    <tr>
+        <td>{{ p.matapelajaran.nama }}</td>
+        <td>{{ p.get_status_display }}</td>
+        <td>{{ p.tanggal }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

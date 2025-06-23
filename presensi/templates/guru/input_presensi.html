@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Input Presensi</h2>
+<form method="post">
+    {% csrf_token %}
+    <label>Kelas:</label>
+    <select name="kelas_id" id="kelas_id">
+        <option value="">Pilih Kelas</option>
+        {% for kelas in kelas_list %}
+        <option value="{{ kelas.id }}">{{ kelas.nama }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Mata Pelajaran:</label>
+    <select name="matapelajaran">
+        {% for mapel in mapel_list %}
+        <option value="{{ mapel.id }}">{{ mapel.nama }}</option>
+        {% endfor %}
+    </select>
+
+    <div id="daftar-siswa">
+        <!-- AJAX akan mengisi siswa -->
+    </div>
+
+    <button type="submit">Simpan Presensi</button>
+</form>
+
+<script>
+    document.getElementById("kelas_id").addEventListener("change", function() {
+        var kelasId = this.value;
+        fetch("/ajax/siswa/" + kelasId + "/")
+            .then(res => res.json())
+            .then(data => {
+                var html = "";
+                data.forEach(s => {
+                    html += `
+                        <div>
+                            ${s.nama}:
+                            <select name="status">
+                                <option value="H">Hadir</option>
+                                <option value="I">Izin</option>
+                                <option value="S">Sakit</option>
+                                <option value="A">Alpha</option>
+                            </select>
+                            <input type="hidden" name="siswa" value="${s.id}">
+                        </div>
+                    `;
+                });
+                document.getElementById("daftar-siswa").innerHTML = html;
+            });
+    });
+</script>
+{% endblock %}

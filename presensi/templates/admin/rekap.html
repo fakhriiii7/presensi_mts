@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Rekap Presensi</h2>
+<form method="get">
+    <select name="kelas">
+        <option value="">Semua Kelas</option>
+        {% for k in kelas_list %}
+            <option value="{{ k.id }}">{{ k.nama }}</option>
+        {% endfor %}
+    </select>
+    <select name="siswa">
+        <option value="">Semua Siswa</option>
+        {% for s in siswa_list %}
+            <option value="{{ s.id }}">{{ s.nama }}</option>
+        {% endfor %}
+    </select>
+    <select name="periode">
+        <option value="">Semua</option>
+        <option value="mingguan">Mingguan</option>
+        <option value="bulanan">Bulanan</option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<table>
+    <tr>
+        <th>Nama</th><th>Mapel</th><th>Status</th><th>Tanggal</th>
+    </tr>
+    {% for p in presensi %}
+    <tr>
+        <td>{{ p.siswa.nama }}</td>
+        <td>{{ p.matapelajaran.nama }}</td>
+        <td>{{ p.get_status_display }}</td>
+        <td>{{ p.tanggal }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'export_excel' %}">Export Excel</a>
+{% endblock %}

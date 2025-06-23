@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Selamat Datang di Dashboard Presensi</h2>
+
+{% if request.user.is_superuser %}
+    <p>Anda login sebagai <strong>Admin</strong>.</p>
+{% elif request.user.groups.first.name == 'Guru' %}
+    <p>Anda login sebagai <strong>Guru</strong>.</p>
+{% elif request.user.groups.first.name == 'Siswa' %}
+    <p>Anda login sebagai <strong>Siswa</strong>.</p>
+{% else %}
+    <p>Peran pengguna tidak dikenali.</p>
+{% endif %}
+
+<p>Silakan pilih menu di samping kiri.</p>
+{% endblock %}
