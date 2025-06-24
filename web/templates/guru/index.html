@@ -5,39 +5,39 @@ Dashboard
 {% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center">
+<div class="min-h-screen bg-gray-100 py-4 sm:py-6 flex flex-col justify-center">
     <div class="relative py-3 w-full max-w-4xl mx-auto px-4">
-        <div class="relative bg-white shadow-lg rounded-3xl overflow-hidden">
+        <div class="relative bg-white shadow-lg rounded-3xl overflow-hidden mobile-card">
             <!-- Header Section with Background -->
-            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-8 py-12 relative">
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 px-4 sm:px-8 py-8 sm:py-12 relative">
                 <div class="absolute inset-0 bg-black opacity-10"></div>
-                <div class="relative flex flex-col md:flex-row items-center justify-between">
-                    <div class="flex items-center mb-4 md:mb-0">
+                <div class="relative flex flex-col sm:flex-row items-center justify-between">
+                    <div class="flex items-center mb-4 sm:mb-0">
                         <div class="bg-white p-2 rounded-full shadow-xl">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 md:h-24 md:w-24 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                         </div>
-                        <div class="ml-6">
-                            <h1 class="text-2xl md:text-3xl font-bold text-white">{{ guru.first_name }} {{ guru.last_name }}</h1>
-                            <p class="text-blue-100 mt-1">{{ guru.role|title }}</p>
+                        <div class="ml-4 sm:ml-6">
+                            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-white">{{ guru.first_name }} {{ guru.last_name }}</h1>
+                            <p class="text-blue-100 mt-1 text-sm sm:text-base">{{ guru.role|title }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Content Section -->
-            <div class="p-8">
+            <div class="p-4 sm:p-8">
                 <div class="max-w-3xl mx-auto">
                     <div class="bg-white rounded-lg">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                             <!-- Personal Information -->
-                            <div class="space-y-6">
+                            <div class="space-y-4 sm:space-y-6">
                                 <h3 class="text-lg font-semibold text-gray-900 border-b pb-2">Informasi Personal</h3>
-                                <div class="space-y-4">
+                                <div class="space-y-3 sm:space-y-4">
                                     <div class="flex flex-col">
                                         <span class="text-sm font-medium text-gray-500">Username</span>
-                                        <span class="mt-1 text-base text-gray-900">{{ guru.user.username }}</span>
+                                        <span class="mt-1 text-base text-gray-900 break-all">{{ guru.user.username }}</span>
                                     </div>
                                     <div class="flex flex-col">
                                         <span class="text-sm font-medium text-gray-500">Nama Lengkap</span>
@@ -51,9 +51,9 @@ Dashboard
                             </div>
 
                             <!-- Teaching Information -->
-                            <div class="space-y-6">
+                            <div class="space-y-4 sm:space-y-6">
                                 <h3 class="text-lg font-semibold text-gray-900 border-b pb-2">Informasi Mengajar</h3>
-                                <div class="space-y-4">
+                                <div class="space-y-3 sm:space-y-4">
                                     <div class="flex flex-col">
                                         <span class="text-sm font-medium text-gray-500">Mata Pelajaran</span>
                                         <div class="mt-1 space-y-1">

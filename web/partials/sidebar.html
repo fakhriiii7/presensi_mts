@@ -1,7 +1,7 @@
 {% load static %}
 
 <aside x-bind:class="{ 'w-fit origin-left': !mainMenu2.isExpanded, 'w-72': mainMenu2.isExpanded }"
-    class="sticky transition-all duration-500 bg-white border-r-2 hidden sm:block">
+    class="sticky transition-all duration-500 bg-white border-r-2 hidden sm:block desktop-sidebar">
     <button x-on:click="mainMenu2.isExpanded = !mainMenu2.isExpanded, mainMenu.isExpanded = false"
         class="absolute p-1.5 rounded-full bg-white border-2 top-5 -right-5 z-50">
         <img x-show="mainMenu2.isExpanded" src="{% static './layouts/sidebar2/sidebar-open.svg' %}" alt="icon"
@@ -62,6 +62,50 @@
                     <h1 x-bind:class="{'origin-left hidden': !mainMenu2.isExpanded}"
                         class="text-sm font-normal {% if request.path == url %} text-white {% else %} text-gray-500 {% endif %} font-inter">
                         Rekap Presensi</h1>
+                </a>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Mobile Sidebar -->
+<aside class="mobile-sidebar sm:hidden" x-bind:class="{ 'open': mainMenu.isExpanded }">
+    <div class="flex items-center justify-between p-4 border-b">
+        <div class="flex items-center gap-3">
+            <img src="{% static 'logo.png' %}" alt="MTs Peradaban Insani Logo" class="w-10 h-10 object-contain">
+            <h1 class="text-lg font-semibold text-gray-900">MTs Peradaban Insani</h1>
+        </div>
+        <button x-on:click="mainMenu.isExpanded = false" class="p-2">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    
+    <div class="overflow-y-auto h-full">
+        <div class="py-4 px-4 space-y-2">
+            {% url 'home' as url %}
+            <a href="{{url}}" 
+               class="flex items-center gap-3 p-4 rounded-lg transition-colors {% if request.path == url %}bg-primaryColor text-white{% else %}text-gray-700 hover:bg-gray-100{% endif %}">
+                <i class="fi fi-rr-home text-xl"></i>
+                <span class="font-medium">Dashboard</span>
+            </a>
+
+            <div class="pt-4">
+                <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3 px-4">Presensi</h2>
+                
+                {% url 'presensi_guru' as url %}
+                <a href="{{url}}" 
+                   class="flex items-center gap-3 p-4 rounded-lg transition-colors {% if request.path == url %}bg-primaryColor text-white{% else %}text-gray-700 hover:bg-gray-100{% endif %}">
+                    <i class="fi fi-rr-home text-xl"></i>
+                    <span class="font-medium">Presensi</span>
+                </a>
+                
+                {% url 'rekap_presensi' as url %}
+                <a href="{{url}}" 
+                   class="flex items-center gap-3 p-4 rounded-lg transition-colors {% if request.path == url %}bg-primaryColor text-white{% else %}text-gray-700 hover:bg-gray-100{% endif %}">
+                    <i class="fi fi-rr-file-upload text-xl"></i>
+                    <span class="font-medium">Rekap Presensi</span>
                 </a>
             </div>
         </div>
